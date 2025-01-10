@@ -1,5 +1,5 @@
-OLD  := MMult0
-NEW  := MMult1
+OLD  := MMult_1x4_8
+NEW  := MMult_1x4_9
 
 CC         := gcc
 LINKER     := $(CC)
@@ -35,6 +35,7 @@ run:
 	./test_MMult.x >> output_$(NEW).csv
 	cp output_$(OLD).csv output_old.csv
 	cp output_$(NEW).csv output_new.csv
+	./plot.py
 
 clean:
 	rm -f $(OBJ_DIR)/*.o *~ core *.x

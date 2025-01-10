@@ -26,6 +26,11 @@ def show_and_save_results():
     old_version = old_data.columns[0]
     old_data.columns = range(num_columns)
 
+    eps = 1e-10
+
+    if old_data[2].abs().max() > eps:
+        print(f'The error between REF and {old_version} is too big')
+        return
     # Plot the old dataset
     plt.plot(old_data[0], old_data[1], 'bo-.', label=f'OLD ({old_version})')
     last = old_data.shape[0]
@@ -40,8 +45,12 @@ def show_and_save_results():
     new_version = new_data.columns[0]
     new_data.columns = range(new_data.shape[1])
 
+    if new_data[2].abs().max() > eps:
+        print(f'The error between REF and {old_version} is too big')
+        return
+
     # Plot the new dataset
-    plt.plot(new_data[0], new_data[1], 'r-*', label=f'NEW ({new_version})')
+    plt.plot(new_data[0], new_data[1], 'r-x', label=f'NEW ({new_version})')
 
     # Title and formatting
     title_string = f"OLD = {old_version}, NEW = {new_version}"
@@ -51,7 +60,7 @@ def show_and_save_results():
     plt.legend()
 
     # Save the plot as a PNG image
-    filename = f"compare_{old_version}_{new_version}.png"
+    filename = f"img/compare_{old_version}_{new_version}.png"
     plt.savefig(filename)
     plt.show()
 
