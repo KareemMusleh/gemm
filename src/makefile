@@ -1,8 +1,5 @@
 OLD  := MMult0
-NEW  := MMult0
-#
-# sample makefile
-#
+NEW  := MMult1
 
 CC         := gcc
 LINKER     := $(CC)
